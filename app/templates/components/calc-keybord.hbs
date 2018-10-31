@@ -1,0 +1,101 @@
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3">  {{calc-display}}  </td>
+      <td>
+        {{#bs-button}}
+          C
+        {{/bs-button}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='7'}}
+          7
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='8'}}
+          8
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='9'}}
+          9
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          /
+        {{/bs-button}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='4'}}
+          4
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='5'}}
+          5
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='6'}}
+          6
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          *
+        {{/bs-button}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='1'}}
+          1
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='2'}}
+          2
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='3'}}
+          3
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          -
+        {{/bs-button}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{#bs-button onClick=(action "pressNumKeys") value='0'}}
+          0
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          .
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          =
+        {{/bs-button}}
+      </td>
+      <td>
+        {{#bs-button }}
+          +
+        {{/bs-button}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+{{yield}}
