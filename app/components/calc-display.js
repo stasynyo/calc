@@ -35,8 +35,7 @@ export default Component.extend({
         this.set('screen', '');
       }
       else{
-        this.set('prescreen',  this.get('prescreen') + this.get('screen'));
-        this.set('screen', '');
+        this.equalTo(value);
       }
         break;
 
@@ -46,8 +45,7 @@ export default Component.extend({
           this.set('screen', '');
         }
         else{
-          this.set('prescreen', this.get('prescreen') - this.get('screen'));
-          this.set('screen', '');
+          this.equalTo(value);
         }
         break;
 
@@ -57,8 +55,7 @@ export default Component.extend({
         this.set('screen', '');
       }
       else{
-        this.set('prescreen', this.get('prescreen') * this.get('screen'));
-        this.set('screen', '');
+        this.equalTo(value);
       }
         break;
 
@@ -68,8 +65,7 @@ export default Component.extend({
         this.set('screen', '');
       }
       else{
-        this.set('prescreen', this.get('prescreen') / this.get('screen'));
-        this.set('screen', '');
+        this.equalTo(value);
       }
         break;
 
@@ -80,7 +76,7 @@ export default Component.extend({
     this.set('mathSign', value);
   },
 
-  equalSign(value){
+  equalTo(value){
     switch (value) {
       case '+':
         this.set('prescreen',  this.get('prescreen') + this.get('screen'));
@@ -124,7 +120,7 @@ export default Component.extend({
             break;
 
           case '=':
-            this.equalSign(this.mathSign);
+            this.equalTo(this.mathSign);
             break;
 
           default:

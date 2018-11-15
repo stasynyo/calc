@@ -4728,7 +4728,7 @@ define('calc/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('components/calc-display.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/calc-display.js should pass ESLint\n\n77:9 - Unexpected console statement. (no-console)\n108:9 - Unexpected console statement. (no-console)');
+    assert.ok(false, 'components/calc-display.js should pass ESLint\n\n73:9 - Unexpected console statement. (no-console)\n104:9 - Unexpected console statement. (no-console)');
   });
 
   QUnit.test('resolver.js', function (assert) {

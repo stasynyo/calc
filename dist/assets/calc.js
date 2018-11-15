@@ -841,8 +841,7 @@
             this.set('prescreen', this.get('screen'));
             this.set('screen', '');
           } else {
-            this.set('prescreen', this.get('prescreen') + this.get('screen'));
-            this.set('screen', '');
+            this.equalTo(value);
           }
           break;
 
@@ -851,8 +850,7 @@
             this.set('prescreen', this.get('screen'));
             this.set('screen', '');
           } else {
-            this.set('prescreen', this.get('prescreen') - this.get('screen'));
-            this.set('screen', '');
+            this.equalTo(value);
           }
           break;
 
@@ -861,8 +859,7 @@
             this.set('prescreen', this.get('screen'));
             this.set('screen', '');
           } else {
-            this.set('prescreen', this.get('prescreen') * this.get('screen'));
-            this.set('screen', '');
+            this.equalTo(value);
           }
           break;
 
@@ -871,8 +868,7 @@
             this.set('prescreen', this.get('screen'));
             this.set('screen', '');
           } else {
-            this.set('prescreen', this.get('prescreen') / this.get('screen'));
-            this.set('screen', '');
+            this.equalTo(value);
           }
           break;
 
@@ -883,7 +879,7 @@
       this.set('mathSign', value);
     },
 
-    equalSign(value) {
+    equalTo(value) {
       switch (value) {
         case '+':
           this.set('prescreen', this.get('prescreen') + this.get('screen'));
@@ -927,7 +923,7 @@
             break;
 
           case '=':
-            this.equalSign(this.mathSign);
+            this.equalTo(this.mathSign);
             break;
 
           default:
@@ -1355,7 +1351,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+9ebf1e06"});
+            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+4c20cc50"});
           }
         
 //# sourceMappingURL=calc.map
