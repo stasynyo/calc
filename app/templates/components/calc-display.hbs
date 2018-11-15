@@ -1,3 +1,121 @@
-PRESS ANYKEY!
 
-{{yield}}
+<div class="calc">
+  <div class="row">
+      <div class="col">
+        {{screen}}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = 'C'
+          pressNum = (action "display")
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{calc-button
+          textKey = '7'
+          pressNum = (action "display")
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '8'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '9'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '*'
+          pressNum = (action "display")
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{calc-button
+          textKey = '4'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '5'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '6'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '/'
+          pressNum = (action "display")
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{calc-button
+          textKey = '1'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '2'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '3'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '+'
+          pressNum = (action "display")
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{calc-button
+          textKey = '0'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '.'
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '='
+          pressNum = (action "display")
+        }}
+      </div>
+      <div class="col">
+        {{calc-button
+          textKey = '-'
+          pressNum = (action "display")
+        }}
+      </div>
+    </div>
+</div>
+
+{{outlet}}
