@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/broccoli_persistent_filterbabel__babel_ember_ajax-output_path-BO6xfbX5.tmp/ember-ajax/index.js

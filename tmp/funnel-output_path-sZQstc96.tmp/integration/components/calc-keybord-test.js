@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/funnel-input_base_path-HLYKNIk4.tmp/tests/integration/components/calc-keybord-test.js

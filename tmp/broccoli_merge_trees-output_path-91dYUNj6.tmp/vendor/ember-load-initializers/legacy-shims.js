@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/node_modules/ember-load-initializers/vendor/ember-load-initializers/legacy-shims.js

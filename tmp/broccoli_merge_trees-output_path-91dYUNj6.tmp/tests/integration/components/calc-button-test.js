@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tests/integration/components/calc-button-test.js

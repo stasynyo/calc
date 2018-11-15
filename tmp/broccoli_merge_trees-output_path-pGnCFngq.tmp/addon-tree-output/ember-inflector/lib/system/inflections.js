@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/broccoli_persistent_filterbabel__babel_ember_inflector-output_path-QPYC7GoB.tmp/ember-inflector/lib/system/inflections.js

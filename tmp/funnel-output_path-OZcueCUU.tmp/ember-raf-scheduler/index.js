@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/funnel-input_base_path-ar0fyxu2.tmp/index.js

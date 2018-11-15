@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/simple_concat_concat-output_path-KhCQHd8u.tmp/templates.template.lint-test.js

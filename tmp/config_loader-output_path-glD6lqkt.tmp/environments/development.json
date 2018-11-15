@@ -1,0 +1,1 @@
+{"modulePrefix":"calc","environment":"development","rootURL":"/","locationType":"auto","EmberENV":{"FEATURES":{},"EXTEND_PROTOTYPES":{"Date":false}},"APP":{"name":"calc","version":"0.0.0"},"exportApplicationGlobal":true}

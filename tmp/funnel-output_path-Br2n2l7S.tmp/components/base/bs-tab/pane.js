@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/funnel-input_base_path-SMzBsMHk.tmp/components/base/bs-tab/pane.js

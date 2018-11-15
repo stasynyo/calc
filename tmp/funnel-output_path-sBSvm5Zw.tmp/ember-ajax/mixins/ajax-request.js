@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/funnel-input_base_path-RRDD4G4c.tmp/mixins/ajax-request.js

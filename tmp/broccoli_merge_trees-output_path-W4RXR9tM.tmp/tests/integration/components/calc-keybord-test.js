@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tests/integration/components/calc-keybord-test.js

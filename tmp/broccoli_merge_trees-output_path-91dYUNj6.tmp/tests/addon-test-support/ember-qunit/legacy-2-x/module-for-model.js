@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/broccoli_persistent_filterbabel__babel_ember_qunit-output_path-aWPfCYoc.tmp/ember-qunit/legacy-2-x/module-for-model.js

@@ -1,0 +1,1 @@
+/home/stasynyo/Projects/calc/tmp/funnel-input_base_path-SKSvJOSr.tmp/ember-bootstrap/register-version.template
