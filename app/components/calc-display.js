@@ -2,12 +2,12 @@ import Component from '@ember/component';
 
 export default Component.extend({
   prescreen: '',
-  screen: 0,
+  screen: '0',
   mathSign: '',
 
   printNumbers(value) {
     let tmp = this.get('screen');
-    if (tmp === 0) {
+    if (tmp === '0' && value !== '.') {
         tmp = value;
         this.set('screen', tmp);
     }
@@ -18,90 +18,58 @@ export default Component.extend({
   },
 
   deleteAllFromTheScreen(){
-    if(this.screen === ''){
+    if(this.screen === '0'){
       this.set('prescreen', '');
       this.set('mathSign', '');
     }
     else{
-    this.set('screen', '');
+    this.set('screen', '0');
   }
   },
 
   mathOperations(value){
-    switch (value) {
-      case '+':
-      if (this.prescreen === ''){
-        this.set('prescreen', this.get('screen'));
-        this.set('screen', '');
-      }
-      else{
-        this.equalTo(value);
-      }
-        break;
 
-      case '-':
-        if (this.prescreen === ''){
-          this.set('prescreen', this.get('screen'));
-          this.set('screen', '');
-        }
-        else{
-          this.equalTo(value);
-        }
-        break;
-
-      case '*':
-      if (this.prescreen === ''){
-        this.set('prescreen', this.get('screen'));
-        this.set('screen', '');
-      }
-      else{
-        this.equalTo(value);
-      }
-        break;
-
-      case '/':
-      if (this.prescreen === ''){
-        this.set('prescreen', this.get('screen'));
-        this.set('screen', '');
-      }
-      else{
-        this.equalTo(value);
-      }
-        break;
-
-      default:
-        console.log(`*AMAZING*`);
+    if (this.prescreen === ''){
+      this.set('prescreen', this.get('screen'));
+      this.set('screen', '0');
+      this.set('mathSign', value);
+    }
+    else {
+      this.set('mathSign', value);
+      this.set('prescreen', this.equalTo(value));
+      this.set('screen', '0');
     }
 
-    this.set('mathSign', value);
   },
 
   equalTo(value){
+
+    let result;
+
     switch (value) {
       case '+':
-        this.set('prescreen',  this.get('prescreen') + this.get('screen'));
-        this.set('screen', '');
+        return result =
+          parseFloat(this.get('prescreen')) + parseFloat(this.get('screen'));
         break;
 
       case '-':
-        this.set('prescreen', this.get('prescreen') - this.get('screen'));
-        this.set('screen', '');
+        return result =
+          parseFloat(this.get('prescreen')) - parseFloat(this.get('screen'));
         break;
 
       case '*':
-        this.set('prescreen', this.get('prescreen') * this.get('screen'));
-        this.set('screen', '');
-
+        return result =
+          parseFloat(this.get('prescreen')) * parseFloat(this.get('screen'));
         break;
 
       case '/':
-        this.set('prescreen', this.get('prescreen') / this.get('screen'));
-        this.set('screen', '');
-
+        return result =
+          parseFloat(this.get('prescreen')) / parseFloat(this.get('screen'));
         break;
 
-      default:
-        console.log(`*AMAZING*`);
+        default:
+          return result = NaN;
+          break;
     }
   },
 
@@ -120,7 +88,9 @@ export default Component.extend({
             break;
 
           case '=':
-            this.equalTo(this.mathSign);
+            this.set('screen', this.equalTo(this.mathSign));
+            this.set('prescreen', '');
+            this.set('mathSign', '');
             break;
 
           default:

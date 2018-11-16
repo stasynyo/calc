@@ -811,12 +811,12 @@
   });
   exports.default = Ember.Component.extend({
     prescreen: '',
-    screen: 0,
+    screen: '0',
     mathSign: '',
 
     printNumbers(value) {
       let tmp = this.get('screen');
-      if (tmp === 0) {
+      if (tmp === '0' && value !== '.') {
         tmp = value;
         this.set('screen', tmp);
       } else {
@@ -826,85 +826,51 @@
     },
 
     deleteAllFromTheScreen() {
-      if (this.screen === '') {
+      if (this.screen === '0') {
         this.set('prescreen', '');
         this.set('mathSign', '');
       } else {
-        this.set('screen', '');
+        this.set('screen', '0');
       }
     },
 
     mathOperations(value) {
-      switch (value) {
-        case '+':
-          if (this.prescreen === '') {
-            this.set('prescreen', this.get('screen'));
-            this.set('screen', '');
-          } else {
-            this.equalTo(value);
-          }
-          break;
 
-        case '-':
-          if (this.prescreen === '') {
-            this.set('prescreen', this.get('screen'));
-            this.set('screen', '');
-          } else {
-            this.equalTo(value);
-          }
-          break;
-
-        case '*':
-          if (this.prescreen === '') {
-            this.set('prescreen', this.get('screen'));
-            this.set('screen', '');
-          } else {
-            this.equalTo(value);
-          }
-          break;
-
-        case '/':
-          if (this.prescreen === '') {
-            this.set('prescreen', this.get('screen'));
-            this.set('screen', '');
-          } else {
-            this.equalTo(value);
-          }
-          break;
-
-        default:
-          console.log(`*AMAZING*`);
+      if (this.prescreen === '') {
+        this.set('prescreen', this.get('screen'));
+        this.set('screen', '0');
+        this.set('mathSign', value);
+      } else {
+        this.set('mathSign', value);
+        this.set('prescreen', this.equalTo(value));
+        this.set('screen', '0');
       }
-
-      this.set('mathSign', value);
     },
 
     equalTo(value) {
+
+      let result;
+
       switch (value) {
         case '+':
-          this.set('prescreen', this.get('prescreen') + this.get('screen'));
-          this.set('screen', '');
+          return result = parseFloat(this.get('prescreen')) + parseFloat(this.get('screen'));
           break;
 
         case '-':
-          this.set('prescreen', this.get('prescreen') - this.get('screen'));
-          this.set('screen', '');
+          return result = parseFloat(this.get('prescreen')) - parseFloat(this.get('screen'));
           break;
 
         case '*':
-          this.set('prescreen', this.get('prescreen') * this.get('screen'));
-          this.set('screen', '');
-
+          return result = parseFloat(this.get('prescreen')) * parseFloat(this.get('screen'));
           break;
 
         case '/':
-          this.set('prescreen', this.get('prescreen') / this.get('screen'));
-          this.set('screen', '');
-
+          return result = parseFloat(this.get('prescreen')) / parseFloat(this.get('screen'));
           break;
 
         default:
-          console.log(`*AMAZING*`);
+          return result = NaN;
+          break;
       }
     },
 
@@ -923,7 +889,9 @@
             break;
 
           case '=':
-            this.equalTo(this.mathSign);
+            this.set('screen', this.equalTo(this.mathSign));
+            this.set('prescreen', '');
+            this.set('mathSign', '');
             break;
 
           default:
@@ -1351,7 +1319,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+4c20cc50"});
+            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+d9b768c0"});
           }
         
 //# sourceMappingURL=calc.map

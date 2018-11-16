@@ -4728,7 +4728,7 @@ define('calc/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('components/calc-display.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/calc-display.js should pass ESLint\n\n73:9 - Unexpected console statement. (no-console)\n104:9 - Unexpected console statement. (no-console)');
+    assert.ok(false, 'components/calc-display.js should pass ESLint\n\n47:9 - \'result\' is assigned a value but never used. (no-unused-vars)\n53:9 - Unreachable code. (no-unreachable)\n58:9 - Unreachable code. (no-unreachable)\n63:9 - Unreachable code. (no-unreachable)\n68:9 - Unreachable code. (no-unreachable)\n72:11 - Unreachable code. (no-unreachable)');
   });
 
   QUnit.test('resolver.js', function (assert) {
