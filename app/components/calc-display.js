@@ -8,7 +8,10 @@ export default Component.extend({
   printNumbersToScreen(value) {
     let tmp = this.get('screen');
     if (
-      tmp === '0' || 0 || NaN || Infinity && value !== '.'
+      tmp === '0' && value !== '.'
+      || tmp === Infinity  && value !== '.'
+      || isNaN(tmp)  && value !== '.'
+      || tmp === 0  && value !== '.'
     ) {
         tmp = value;
         this.set('screen', tmp);
@@ -94,7 +97,7 @@ export default Component.extend({
       display(value){
         switch (value) {
           case 'C':
-          case 'CA':
+          case 'AC':
             this.deleteAllFromTheScreen();
             break;
 
