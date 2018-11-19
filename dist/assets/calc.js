@@ -797,8 +797,7 @@
     calcDisplay: '',
     actions: {
       pressKey(value) {
-        this.get('pressNum')(value);
-        return console.log(`${value} key pressed`);
+        this.get('pressButton')(value);
       }
     }
   });
@@ -814,9 +813,9 @@
     screen: '0',
     mathSign: '',
 
-    printNumbers(value) {
+    printNumbersToScreen(value) {
       let tmp = this.get('screen');
-      if (tmp === '0' && value !== '.') {
+      if (tmp === '0' || 0 || NaN || Infinity && value !== '.') {
         tmp = value;
         this.set('screen', tmp);
       } else {
@@ -840,9 +839,11 @@
         this.set('prescreen', this.get('screen'));
         this.set('screen', '0');
         this.set('mathSign', value);
-      } else {
+      } else if (this.screen === '0') {
         this.set('mathSign', value);
-        this.set('prescreen', this.equalTo(value));
+      } else {
+        this.set('prescreen', this.equalTo(this.mathSign));
+        this.set('mathSign', value);
         this.set('screen', '0');
       }
     },
@@ -854,6 +855,8 @@
       switch (value) {
         case '+':
           return result = parseFloat(this.get('prescreen')) + parseFloat(this.get('screen'));
+          // (parseFloat(this.get('prescreen')) + parseFloat(this.get('screen')))
+          // .toFixed(10);
           break;
 
         case '-':
@@ -874,11 +877,24 @@
       }
     },
 
+    blockTheDot(value) {
+      if (this.get('screen').indexOf('.') > 0) {
+        console.log(`Don't touch the dot`);
+      } else {
+        this.printNumbersToScreen(value);
+      }
+    },
+
     actions: {
       display(value) {
         switch (value) {
           case 'C':
+          case 'CA':
             this.deleteAllFromTheScreen();
+            break;
+
+          case '.':
+            this.blockTheDot(value);
             break;
 
           case '+':
@@ -895,7 +911,7 @@
             break;
 
           default:
-            this.printNumbers(value);
+            this.printNumbersToScreen(value);
             break;
 
         }
@@ -1268,7 +1284,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "Q7ao6RLv", "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[7,\"div\"],[11,\"class\",\"calc\"],[9],[0,\"\\n  \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n      \"],[1,[21,\"mathSign\"],false],[0,\"\\n    \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n          \"],[1,[21,\"prescreen\"],false],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n          \"],[1,[21,\"screen\"],false],[0,\"\\n        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"C\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\",\"pressNum\"],[\"7\",[27,\"action\",[[22,0,[]],\"display\"],null],[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"8\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"9\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"*\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"4\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"5\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"6\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"/\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"1\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"2\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"3\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"+\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"0\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\".\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"=\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressNum\"],[\"-\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n\"],[10],[0,\"\\n\\n\"],[1,[21,\"outlet\"],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "calc/templates/components/calc-display.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "2K4EronP", "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[11,\"class\",\"calc\"],[9],[0,\"\\n  \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n      \"],[1,[21,\"mathSign\"],false],[0,\"\\n    \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n          \"],[1,[21,\"prescreen\"],false],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n          \"],[1,[21,\"screen\"],false],[0,\"\\n        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n\"],[4,\"if\",[[23,[\"mathSign\"]]],null,{\"statements\":[[0,\"          \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"C\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"          \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"CA\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n\"]],\"parameters\":[]}],[0,\"      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"7\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"8\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"9\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"*\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"4\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"5\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"6\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"/\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"1\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"2\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"3\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"+\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n    \"],[7,\"div\"],[11,\"class\",\"row\"],[9],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"0\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\".\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"=\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"div\"],[11,\"class\",\"col\"],[9],[0,\"\\n        \"],[1,[27,\"calc-button\",null,[[\"textKey\",\"pressButton\"],[\"-\",[27,\"action\",[[22,0,[]],\"display\"],null]]]],false],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n\"],[10],[0,\"\\n\\n\"],[1,[21,\"outlet\"],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "calc/templates/components/calc-display.hbs" } });
 });
 ;define('calc/templates/components/ember-popper-targeting-parent', ['exports', 'ember-popper/templates/components/ember-popper-targeting-parent'], function (exports, _emberPopperTargetingParent) {
   'use strict';
@@ -1319,7 +1335,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+d9b768c0"});
+            require("calc/app")["default"].create({"name":"calc","version":"0.0.0+dc6e2478"});
           }
         
 //# sourceMappingURL=calc.map

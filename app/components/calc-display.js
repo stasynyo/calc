@@ -5,9 +5,11 @@ export default Component.extend({
   screen: '0',
   mathSign: '',
 
-  printNumbers(value) {
+  printNumbersToScreen(value) {
     let tmp = this.get('screen');
-    if (tmp === '0' && value !== '.') {
+    if (
+      tmp === '0' || 0 || NaN || Infinity && value !== '.'
+    ) {
         tmp = value;
         this.set('screen', tmp);
     }
@@ -21,6 +23,7 @@ export default Component.extend({
     if(this.screen === '0'){
       this.set('prescreen', '');
       this.set('mathSign', '');
+
     }
     else{
     this.set('screen', '0');
@@ -34,9 +37,12 @@ export default Component.extend({
       this.set('screen', '0');
       this.set('mathSign', value);
     }
-    else {
+    else if (this.screen === '0'){
       this.set('mathSign', value);
-      this.set('prescreen', this.equalTo(value));
+    }
+    else {
+      this.set('prescreen', this.equalTo(this.mathSign));
+      this.set('mathSign', value);
       this.set('screen', '0');
     }
 
@@ -50,6 +56,8 @@ export default Component.extend({
       case '+':
         return result =
           parseFloat(this.get('prescreen')) + parseFloat(this.get('screen'));
+          // (parseFloat(this.get('prescreen')) + parseFloat(this.get('screen')))
+          // .toFixed(10);
         break;
 
       case '-':
@@ -73,11 +81,25 @@ export default Component.extend({
     }
   },
 
+  blockTheDot(value){
+    if (this.get('screen').indexOf('.') > 0){
+      console.log(`Don't touch the dot`);
+    }
+    else {
+      this.printNumbersToScreen(value);
+    }
+  },
+
     actions: {
       display(value){
         switch (value) {
           case 'C':
+          case 'CA':
             this.deleteAllFromTheScreen();
+            break;
+
+          case '.':
+            this.blockTheDot(value);
             break;
 
           case '+':
@@ -94,7 +116,7 @@ export default Component.extend({
             break;
 
           default:
-            this.printNumbers(value);
+            this.printNumbersToScreen(value);
             break;
 
         }
