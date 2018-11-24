@@ -57,31 +57,30 @@ export default Component.extend({
 
     switch (value) {
       case '+':
-        return result =
+        result =
           parseFloat(this.get('prescreen')) + parseFloat(this.get('screen'));
-          // (parseFloat(this.get('prescreen')) + parseFloat(this.get('screen')))
-          // .toFixed(10);
         break;
 
       case '-':
-        return result =
+        result =
           parseFloat(this.get('prescreen')) - parseFloat(this.get('screen'));
         break;
 
       case '*':
-        return result =
+        result =
           parseFloat(this.get('prescreen')) * parseFloat(this.get('screen'));
         break;
 
       case '/':
-        return result =
+        result =
           parseFloat(this.get('prescreen')) / parseFloat(this.get('screen'));
         break;
 
         default:
-          return result = NaN;
+          result = NaN;
           break;
     }
+    return +result.toFixed(10);
   },
 
   blockTheDot(value){
